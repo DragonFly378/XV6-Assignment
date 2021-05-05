@@ -1,0 +1,6 @@
+1. syscall di bagian bawah curproc->tf->eax = syscalls[num]();
+   paste : #ifdef PRINT_SYSCALLS
+    cprintf("%s -> %d\n", syscallnames[num], curproc->tf->eax);
+    #endif
+
+
