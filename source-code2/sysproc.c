@@ -111,3 +111,41 @@ sys_date(void)
 
 }
 #endif
+
+#ifdef CS333_P2
+int 
+sys_getuid(void)
+{
+ return myproc() -> uid;
+}
+int 
+sys_getgid(void)
+{
+ return myproc() -> gid;
+}int 
+sys_getppid(void)
+{
+    if(myproc()->pid==1)
+      return myproc()->pid;
+    return myproc()->parent->pid;
+}
+int 
+sys_setuid(void)
+{
+  int capung;
+  if(argint(0,&capung) < 0 || capung > 32767 || capung < 0)
+    return -1;
+  myproc()->uid = (uint)capung;
+  return 0;
+}
+int 
+sys_setgid(void)
+{
+  int capung;
+  if(argint(0,&capung) < 0 || capung > 32767 || capung < 0)
+    return -1;
+  myproc()->gid = (uint)capung;
+  return 0;
+}
+
+#endif
